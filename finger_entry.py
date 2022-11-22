@@ -24,19 +24,13 @@ class FingerEntry(object):
         if not (0 <= n < NODES and 0 < k <= M):
             raise ValueError('invalid finger entry values')
         self.start = (n + 2**(k-1)) % NODES
-        print("start")
-        print(self.start)
         self.next_start = (n + 2**k) % NODES if k < M else n
-        print("next start")
-        print(self.next_start)
         self.interval = ModRange(self.start, self.next_start, NODES)
-        print("interval")
-        print(self.interval)
         self.node = node
 
     def __repr__(self):
         """ Something like the interval|node charts in the paper """
-        return ''.format(self.start, self.next_start, self.node)
+        return f"({self.start}, {self.next_start}) , {self.node}"
 
     def __contains__(self, id):
         """ Is the given id within this finger's interval? """

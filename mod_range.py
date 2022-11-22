@@ -23,20 +23,12 @@ class ModRange(object):
         self.divisor = divisor
         self.start = start % self.divisor
         self.stop = stop % self.divisor
-        print("inside mod range ")
-        print(self.start)
-        print(self.stop)
-        print(self.divisor)
         # we want to use ranges to make things speedy, but if it wraps around the 0 node, we have to use two
         if self.start < self.stop:
-            print("inside less range")
             self.intervals = (range(self.start, self.stop),)
-            print(self.intervals)
         elif self.stop == 0:
-            print("inside 0 range")
             self.intervals = (range(self.start, self.divisor),)
         else:
-            print("else range")
             self.intervals = (range(self.start, self.divisor), range(0, self.stop))
 
     def __repr__(self):
